@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompleteListActivity" >
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageViewOrangeCircle"
+        android:src="@drawable/ic_orangecircle"/>
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageViewGreenCircle"
+        android:layout_toRightOf="@id/imageViewOrangeCircle"
+        android:src="@drawable/ic_greencircle"/>
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageViewBlueCircle"
+        android:layout_toRightOf="@id/imageViewGreenCircle"
+        android:src="@drawable/ic_bluecircle"/>
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageViewRedCircle"
+        android:layout_toRightOf="@id/imageViewBlueCircle"
+        android:src="@drawable/ic_redcircle"/>
+
+    <ListView
+        android:id="@+id/completeList"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_below="@+id/imageViewGreenCircle"
+        android:scrollbars="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp">
+    </ListView>
+
+    <Button
+        android:id="@+id/showOnlyAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:text="@string/add_item" />
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:id="@+id/headerLinearLay"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/imageViewCircle"
+        android:src="@drawable/ic_orangecircle"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/username"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/imageViewCircle"
+        android:textSize="42sp"
+        android:typeface="sans" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/roleId"
+        android:gravity="center_vertical"
+        android:textSize="42sp"
+        android:visibility="invisible"
+        android:typeface="sans" />
+</RelativeLayout>

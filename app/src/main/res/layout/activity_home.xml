@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cabbooking.rkm.HomeActivity">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxHeight="80dp"
+        android:maxWidth="80dp"
+        android:scaleType="center"
+        android:layout_marginLeft="3dp"
+        android:id="@+id/imageViewAddbooking"
+        android:contentDescription="@string/create_booking"
+        android:src="@drawable/ic_addbooking" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_centerHorizontal="true"
+        android:maxWidth="80dp"
+        android:paddingLeft="20dp"
+        android:maxHeight="80dp"
+        android:scaleType="centerInside"
+        android:id="@+id/imageViewbookingHistroy"
+        android:layout_toRightOf="@id/imageViewAddbooking"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_bookinghistory"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:maxHeight="80dp"
+        android:scaleType="fitEnd"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/imageViewbookingHistroy"
+        android:src="@drawable/ic_taxi"
+        android:id="@+id/imageViewtaxi"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:maxHeight="80dp"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/imageViewtaxi"
+        android:src="@drawable/ic_driver"
+        android:id="@+id/imageViewdriver"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButtonAddUser"
+        android:src="@drawable/ic_addusermale"
+        android:text="@string/Add_User"
+        android:clickable="true"
+        android:onClick="ClickAddUser"
+        android:layout_toRightOf="@+id/imageViewdriver"
+        android:nestedScrollingEnabled="false"
+        android:maxHeight="80dp"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>
