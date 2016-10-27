@@ -13,34 +13,47 @@ import android.widget.Switch;
 import android.widget.TextView;
 //import com.cabbooking.rkm.R;
 
-public class CompleteListAdapter extends BaseAdapter {
+
+public class CompleteListAdapter extends BaseAdapter
+{
     private Activity mContext;
     private List<Users> mList;
     private LayoutInflater mLayoutInflater = null;
-    public CompleteListAdapter(Activity context, List<Users> list) {
+
+    public CompleteListAdapter(Activity context, List<Users> list)
+    {
         mContext = context;
         mList = list;
         mLayoutInflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return mList.size();
     }
+
     @Override
-    public Object getItem(int pos) {
+    public Object getItem(int pos)
+    {
         return mList.get(pos);
     }
+
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View v = convertView;
         CompleteListViewHolder viewHolder;
-        if (convertView == null)
+
+       if (convertView == null)
         {
             LayoutInflater li = (LayoutInflater) mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -58,15 +71,19 @@ public class CompleteListAdapter extends BaseAdapter {
         {
             case "A":
                 viewHolder.mImageItem.setImageResource(R.drawable.ic_bluecircle);
+                viewHolder.mRoleId.setText(mList.get(position).getId());
                 break;
             case "H":
                 viewHolder.mImageItem.setImageResource(R.drawable.ic_orangecircle);
+                viewHolder.mRoleId.setText(mList.get(position).getId());
                 break;
             case "B":
                 viewHolder.mImageItem.setImageResource(R.drawable.ic_greencircle);
+                viewHolder.mRoleId.setText(mList.get(position).getId());
                 break;
             case "D":
                 viewHolder.mImageItem.setImageResource(R.drawable.ic_redcircle);
+                viewHolder.mRoleId.setText(mList.get(position).getId());
                 break;
         }
 

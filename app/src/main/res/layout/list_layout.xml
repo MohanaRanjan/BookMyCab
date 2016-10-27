@@ -6,10 +6,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:scaleType="fitXY"
         android:id="@+id/imageViewCircle"
-        android:src="@drawable/ic_orangecircle"/>
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -17,14 +18,14 @@
         android:paddingLeft="10dp"
         android:gravity="center_vertical"
         android:layout_toRightOf="@id/imageViewCircle"
-        android:textSize="42sp"
+        android:textSize="20sp"
         android:typeface="sans" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/roleId"
         android:gravity="center_vertical"
-        android:textSize="42sp"
+        android:textSize="20sp"
         android:visibility="invisible"
         android:typeface="sans" />
 </RelativeLayout>

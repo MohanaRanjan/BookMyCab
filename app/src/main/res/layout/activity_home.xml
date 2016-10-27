@@ -7,58 +7,51 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.cabbooking.rkm.HomeActivity">
-    <ImageView
+    tools:context=".HomeActivity">
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
+        android:id="@+id/imagebuttonAddBooking"
+        android:src="@drawable/ic_addbooking"
+        android:text="@string/Add_BookingLable"
+        android:nestedScrollingEnabled="false"
         android:maxHeight="80dp"
-        android:maxWidth="80dp"
-        android:scaleType="center"
-        android:layout_marginLeft="3dp"
-        android:id="@+id/imageViewAddbooking"
-        android:contentDescription="@string/create_booking"
-        android:src="@drawable/ic_addbooking" />
-    <ImageView
+        android:scaleType="fitXY" />
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:layout_centerHorizontal="true"
-        android:maxWidth="80dp"
-        android:paddingLeft="20dp"
-        android:maxHeight="80dp"
-        android:scaleType="centerInside"
-        android:id="@+id/imageViewbookingHistroy"
-        android:layout_toRightOf="@id/imageViewAddbooking"
-        android:layout_marginLeft="15dp"
+        android:id="@+id/imagebuttonbookingHistroy"
         android:src="@drawable/ic_bookinghistory"
-        />
+        android:text="@string/Add_User"
+        android:clickable="true"
+        android:layout_toRightOf="@id/imagebuttonAddBooking"
+        android:nestedScrollingEnabled="false"
+        android:maxHeight="80dp"
+        android:scaleType="fitXY" />
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxWidth="80dp"
-        android:maxHeight="80dp"
-        android:scaleType="fitEnd"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/imageViewbookingHistroy"
+        android:id="@+id/imagebuttontaxi"
         android:src="@drawable/ic_taxi"
-        android:id="@+id/imageViewtaxi"
-        />
+        android:text="@string/Add_User"
+        android:layout_toRightOf="@id/imagebuttonbookingHistroy"
+        android:nestedScrollingEnabled="false"
+        android:maxHeight="80dp"
+        android:scaleType="fitXY" />
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxWidth="80dp"
-        android:maxHeight="80dp"
-        android:scaleType="fitXY"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/imageViewtaxi"
         android:src="@drawable/ic_driver"
-        android:id="@+id/imageViewdriver"
-        />
+        android:id="@+id/imagebuttondriver"
+        android:text="@string/Add_User"
+        android:layout_toRightOf="@id/imagebuttontaxi"
+        android:nestedScrollingEnabled="false"
+        android:maxHeight="80dp"
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -66,9 +59,7 @@
         android:id="@+id/imageButtonAddUser"
         android:src="@drawable/ic_addusermale"
         android:text="@string/Add_User"
-        android:clickable="true"
-        android:onClick="ClickAddUser"
-        android:layout_toRightOf="@+id/imageViewdriver"
+        android:layout_below="@id/imagebuttonAddBooking"
         android:nestedScrollingEnabled="false"
         android:maxHeight="80dp"
         android:scaleType="fitXY" />

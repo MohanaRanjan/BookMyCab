@@ -20,7 +20,14 @@
     <string name="Add_User_Driver">Driver</string>
     <string name="Add_User_BookingRequester">Booking Requester</string>
     <string name="add_item">Add Item</string>
-
+    <string name="show_hoi">Show HOI</string>
     <string name="title_activity_userlist">UserlistActivity</string>
+    <string name="Add_BookingLable">Book a Cab Now</string>
 
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="date_label_set">Press the button to set the date</string>
+    <string name="date_button_set">Set Date</string>
+    <string name="date_view_set">The Date is: </string>
+    <string name="date_selected"></string>
 </resources>

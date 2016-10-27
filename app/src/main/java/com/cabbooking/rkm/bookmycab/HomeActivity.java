@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 
     ImageButton imagebutton;
+    ImageButton imagebuttonAddBooking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,18 @@ public class HomeActivity extends Activity {
             public void onClick(View view)
             {
                 Intent intent=new Intent(HomeActivity.this,CompleteListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imagebuttonAddBooking  = (ImageButton)findViewById(R.id.imagebuttonAddBooking);
+        imagebuttonAddBooking.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(HomeActivity.this,AddBooking.class);
                 startActivity(intent);
             }
         });

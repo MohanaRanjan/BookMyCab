@@ -18,7 +18,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddUserActivity extends Activity {
+public class AddUserActivity extends Activity
+{
     private EditText editTextName;
     private EditText editTextPhone;
     private EditText editTextEmail;
@@ -40,9 +41,16 @@ public class AddUserActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            setContentView(R.layout.activity_add_user);
 
-        db = new DBHelper(this);
-
+            db = new DBHelper(this);
+            addListeronButton();
+        }
+        catch (Exception ex)
+        {
+            System.out.println(String.format("Exception Details {0}",ex.getMessage()));
+        }
 /*
         Bundle bundle = getIntent().getExtras();
 
@@ -58,8 +66,6 @@ public class AddUserActivity extends Activity {
             }
         }
 */
-        setContentView(R.layout.activity_add_user);
-        addListeronButton();
     }
 
     @Override
@@ -90,32 +96,41 @@ public class AddUserActivity extends Activity {
         editTextEmail = (EditText) findViewById(R.id.Email);
         editTextPhone = (EditText) findViewById(R.id.phone);
 
-        radioGroupRoles =  (RadioGroup) findViewById(R.id.radioGroupRoles);
-
-        rdoButtonHOI  = (RadioButton)findViewById(R.id.radioButtonHOI);
-        rdoButtonAdmin = (RadioButton)findViewById(R.id.radioButtonAdmin);
-        rdoButtonBookingRequester = (RadioButton)findViewById(R.id.radioButtonBookingRequester);
-        rdoButtonDriver = (RadioButton)findViewById(R.id.radioButtonDriver);
-
-        switch(user.getUserRoleId())
+        try
         {
-            case  "A":
-                rdoButtonAdmin.setSelected(true);
-                break;
-            case "H":
-                rdoButtonHOI.setSelected(true);
-                break;
-            case "D":
-                rdoButtonDriver.setSelected(true);
-                break;
-            case "B":
-                rdoButtonBookingRequester.setSelected(true);
-                break;
+            radioGroupRoles =  (RadioGroup) findViewById(R.id.radioGroupRoles);
+
+            rdoButtonHOI  = (RadioButton)findViewById(R.id.radioButtonHOI);
+            rdoButtonAdmin = (RadioButton)findViewById(R.id.radioButtonAdmin);
+            rdoButtonBookingRequester = (RadioButton)findViewById(R.id.radioButtonBookingRequester);
+            rdoButtonDriver = (RadioButton)findViewById(R.id.radioButtonDriver);
+
+            switch(user.getUserRoleId())
+            {
+                case  "A":
+                    rdoButtonAdmin.setChecked(true);
+                    break;
+                case "H":
+                    rdoButtonHOI.setChecked(true);
+                    break;
+                case "D":
+                    rdoButtonDriver.setChecked(true);
+                    break;
+                case "B":
+                    rdoButtonBookingRequester.setChecked(true);
+                    break;
+            }
+
+            editTextName.setText(user.getName());
+            editTextEmail.setText(user.getEmail());
+            editTextPhone.setText(user.getMobileNumber());
+
+
+        }catch(Exception ex)
+        {
+            String S  = ex.getMessage();
         }
 
-        editTextName.setText(user.getName());
-        editTextEmail.setText(user.getEmail());
-        editTextPhone.setText(user.getMobileNumber());
 
     }
 
