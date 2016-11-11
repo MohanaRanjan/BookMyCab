@@ -40,9 +40,18 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(HomeActivity.this,AddBooking.class);
-                startActivity(intent);
+                try
+                {
+                    Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,AddBookingActivity.class);
+                    startActivity(intent);
+                }
+                catch(Exception ex)
+                {
+                    String s = ex.getMessage();
+                    String g= s;
+                }
+
             }
         });
     }

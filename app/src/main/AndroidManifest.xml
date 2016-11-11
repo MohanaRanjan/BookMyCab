@@ -25,7 +25,11 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".CompleteListActivity" />
         <activity android:name=".AddUserActivity" />
-        <activity android:name=".AddBooking"></activity>
+        <activity android:name=".AddBookingActivity" />
+        <activity
+            android:name=".BookingList"
+            android:label="@string/title_activity_booking_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
