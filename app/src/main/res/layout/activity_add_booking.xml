@@ -14,6 +14,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".AddBookingActivity"
+        android:background="@drawable/global_home_bg_new_2"
         android:scrollbars="vertical"
         android:visibility="visible">
 
@@ -31,84 +32,33 @@
             android:layout_marginTop="11dp"
             android:textSize="30dp" />
 
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLPersonName"
-            android:layout_below="@+id/HeadingAddUser">
-
             <Spinner
                 android:id="@+id/SpinnerUserName"
                 android:layout_width="match_parent"
-                android:paddingLeft="55dp"
+                android:hint="Name"
+                android:layout_below="@+id/HeadingAddUser"
                 android:layout_height="wrap_content" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:id="@+id/LablePersonName"
-                android:text="Name : " />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLPickUpfrom"
-            android:layout_below="@+id/FLPersonName">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:paddingLeft="65dp"
+                android:hint="Pickup"
                 android:id="@+id/PickUpfrom"
+                android:layout_below="@+id/SpinnerUserName"
                 android:inputType="text" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:id="@+id/PickUpfromLable"
-                android:text="Pickup : " />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLPlaceofvisit"
-            android:layout_below="@+id/FLPickUpfrom">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:ems="10"
-                android:paddingLeft="100dp"
+                android:hint="Place of visit"
                 android:id="@+id/Placeofvisit"
                 android:layout_alignParentStart="true"
+                android:layout_below="@+id/PickUpfrom"
                 android:layout_alignEnd="@+id/PickUpfrom" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:id="@+id/PlaceofvisitLable"
-                android:text="Place of visit : " />
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLReasonForTravel"
-            android:layout_below="@+id/FLPlaceofvisit">
 
             <EditText
                 android:layout_width="match_parent"
@@ -116,109 +66,120 @@
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:maxLines="5"
+                android:hint="Reason for Travel"
                 android:ems="10"
-                android:paddingLeft="160dp"
+                android:layout_below="@+id/Placeofvisit"
                 android:id="@+id/ReasonForTravel"
                 android:layout_alignParentStart="true"
                 />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:id="@+id/ReasonForTravelLable"
-                android:text="Reason for Travel : " />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLTotalTimeNeeded"
-            android:layout_below="@+id/FLReasonForTravel">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/TotalTimeNeeded"
-                android:paddingLeft="170dp"
-                android:layout_alignTop="@+id/T"
+                android:hint="Total hours cab needed"
+                android:layout_below="@+id/ReasonForTravel"
                 android:layout_alignParentEnd="true"
                 android:inputType="number" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:id="@+id/TotalTimeNeededLable"
-                android:text="Total hours cab needed : " />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLDateofTravel"
-            android:layout_below="@+id/FLTotalTimeNeeded">
-
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/FLNumberOfPersons"
-            android:layout_below="@+id/FLDateofTravel">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:paddingLeft="110dp"
+                android:hint="Total persons"
+                android:layout_below="@+id/TotalTimeNeeded"
                 android:id="@+id/NumberOfPersons"
                 android:layout_alignParentStart="true" />
 
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/LLdatepicker"
+            android:layout_below="@+id/NumberOfPersons">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:id="@+id/NumberOfPersonsLable"
-                android:text="Total persons : " />
-        </FrameLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/FLDatePicker"
-        android:layout_below="@+id/FLDateofTravel">
-        <DatePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/datePicker"
-            android:layout_below="@+id/FLNumberOfPersons"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="35dp"
-           />
-        </FrameLayout>
-        <RelativeLayout
+                android:layout_below="@+id/NumberOfPersons"
+                android:id="@+id/Datepickerlable"
+                android:text="Pick Date" />
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/datePicker"
+                android:calendarViewShown="false"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/RLButton"
-            android:layout_alignParentBottom="true">
+            android:id="@+id/LLtimepicker"
+            android:orientation="vertical"
+            android:layout_below="@+id/LLdatepicker"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Timepickerlable"
+                android:layout_below="@+id/LLdatepicker"
+                android:text="Pick Time" />
+
+            <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/timePicker"
+                android:timePickerMode="spinner"
+                android:layout_margin="-20dp"
+                android:scaleX="0.5"
+                android:scaleY="0.5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LLButton"
+            android:orientation="horizontal"
+            android:layout_below="@+id/LLtimepicker"
+            android:layout_alignParentBottom="true"
+            >
+           <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Buttoncancel"
+                android:text="Cancel"
+                android:background="@drawable/red_bg_1"
+               android:layout_margin="10dp"
+               />
+
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:onClick="onBookNowButtonClick"
+                android:id="@+id/ButtonBookAnother"
+                android:text="Update"
+                android:background="@drawable/blue_bg_1"
+                android:layout_margin="10dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="onBookNowButtonClick"
                 android:id="@+id/ButtonBookNow"
-                android:text="Book Now!"
-                android:layout_gravity="left|center_vertical" />
-        </RelativeLayout>
+                android:text="Create New"
+                android:background="@drawable/green_bg_1"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

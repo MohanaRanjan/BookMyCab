@@ -1,34 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.cabbooking.rkm.bookmycab.BookingList">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+    android:background="@drawable/global_home_bg_new_2"
+    tools:context=".BookingListActivity" >
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_booking_list" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:id="@+id/LLBookingButtonPane"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        >
 
-</android.support.design.widget.CoordinatorLayout>
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/ButtonAddBooking"
+            android:background="@drawable/ic_adduser"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/LLBookingFilterPane"
+        android:orientation="vertical"
+        >
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/radioGroupFilters"
+            android:layout_marginTop="32dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next One Week"
+                android:id="@+id/radioButtonNextWeek"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next 30 Days"
+                android:id="@+id/radioButtonNextMonth"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Current Booking"
+                android:id="@+id/radioButtonAllBooking"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Expired Booking"
+                android:id="@+id/radioButtonAllExpiredBooking"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/LLBookingListPane"
+        android:orientation="vertical"
+        android:layout_below="@+id/LLBookingFilterPane"
+        android:layout_alignParentEnd="true">
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:scrollbars="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:smoothScrollbar="true"
+            android:layout_marginTop="23dp">
+        </ListView>
+    </LinearLayout>
+
+</RelativeLayout>
+</ScrollView>

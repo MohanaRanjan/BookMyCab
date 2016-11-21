@@ -51,25 +51,11 @@ public class AddUserActivity extends Activity
         {
             System.out.println(String.format("Exception Details {0}",ex.getMessage()));
         }
-/*
-        Bundle bundle = getIntent().getExtras();
-
-        if(bundle != null)
-        {
-            for (String key : bundle.keySet())
-            {
-                if(key != null && key == "ModifyRecord")
-                {
-                    Users user = fillUser(bundle.getString("ModifyRecord"));
-                    fillControls(user);
-                }
-            }
-        }
-*/
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         Intent intent =  getIntent();
 

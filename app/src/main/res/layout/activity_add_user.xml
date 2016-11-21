@@ -7,8 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/global_background_new"
-    tools:context=".AddUserActivity">
+    android:background="@drawable/global_home_bg_new_2"
+    tools:context=".AddUserActivity"
+    android:id="@+id/dd">
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,24 +117,27 @@
 
     </RadioGroup>
 
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
         android:id="@+id/buttonCancel"
+        android:layout_margin="10dp"
+        android:background="@drawable/red_bg_1"
         android:layout_alignParentBottom="true"
         />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/buttonSave"
+        android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/buttonCancel"
-   />
-
-
+        android:background="@drawable/green_bg_1"
+        />
 
 </RelativeLayout>

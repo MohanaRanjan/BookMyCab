@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:id="@+id/headerRLayout"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/BookingListUserName"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:typeface="sans" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/BookingListTravelDate"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/BookingListUserName"
+        android:textSize="15sp"
+        android:paddingLeft="8dp"
+        android:typeface="sans" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/BookingListBookingTransactionId"
+        android:gravity="center_vertical"
+        android:textSize="2sp"
+        android:visibility="invisible"
+        android:typeface="sans"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/BookingListTravelDate" />
+</RelativeLayout>
+

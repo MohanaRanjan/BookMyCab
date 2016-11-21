@@ -1,8 +1,34 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/global_home_bg_new_2"
     tools:context=".CompleteListActivity" >
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/LLButtonPane"
+        android:layout_alignParentEnd="true"
+        >
+    <Button
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="5dp"
+        android:onClick="onClick"
+        android:id="@+id/ButtonAddUser"
+        android:background="@drawable/ic_adduser"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/LLImageViewPane"
+        android:layout_below="@+id/LLButtonPane"
+        android:background="@color/bglinear"
+        android:layout_alignParentStart="true">
     <ImageView
         android:layout_height="40dp"
         android:layout_width="40dp"
@@ -35,7 +61,13 @@
         android:scaleType="fitXY"
         android:layout_toRightOf="@id/imageViewBlueCircle"
         android:src="@drawable/ic_redcircle"/>
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/LLListViewPane"
+        android:layout_below="@+id/LLImageViewPane"
+        android:layout_alignParentStart="true">
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
@@ -47,12 +79,6 @@
         android:smoothScrollbar="true"
         android:layout_marginTop="23dp">
     </ListView>
-
-    <Button
-        android:id="@+id/showOnlyAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:text="@string/show_hoi" />
+    </LinearLayout>
 </RelativeLayout>
+</ScrollView>

@@ -24,6 +24,7 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
 {
     private ListView mCompleteListView;
     private Button mAddItemToList;
+    private Button mAddUser;
     private ArrayList<Users> mItems;
     private CompleteListAdapter mListAdapter;
     private static final int MIN = 0, MAX = 10000;
@@ -46,7 +47,7 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
             mItems =  db.GetAllUsers();
             mListAdapter = new CompleteListAdapter(this, mItems);
             mCompleteListView.setAdapter(mListAdapter);
-        }catch(Exception ex )
+        }catch(Exception ex)
         {
             String s  =  ex.getMessage();
             String d = s;
@@ -64,9 +65,20 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
     private void initViews()
     {
         mCompleteListView = (ListView) findViewById(android.R.id.list);
-        mAddItemToList = (Button) findViewById(R.id.showOnlyAdmin);
+       // mAddItemToList = (Button) findViewById(R.id.showOnlyAdmin);
+        mAddUser = (Button) findViewById(R.id.ButtonAddUser);
 
-        mAddItemToList.setOnClickListener(this);
+       // mAddItemToList.setOnClickListener(this);
+
+        mAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent mainIntent = new Intent(CompleteListActivity.this, AddUserActivity.class);
+               // mainIntent.putExtra("NewRecord",((TextView) view.findViewById(R.id.roleId)).getText());
+                startActivity(mainIntent);
+            }
+        });
 
         mCompleteListView.setOnItemClickListener(new ListView.OnItemClickListener()
         {

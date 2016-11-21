@@ -1,8 +1,10 @@
 package com.cabbooking.rkm.bookmycab;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -27,6 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class AddBookingActivity extends AppCompatActivity
 {
@@ -43,12 +47,16 @@ public class AddBookingActivity extends AppCompatActivity
     private EditText editTextDateofTravel;
     private EditText editTextNumberOfPersons;
     private DatePicker dpDatePicker;
+    private TimePicker dpTimePicker;
     private Booking booking;
     //private  AutoCompleteTextView actv;
     //private UserAutoCompleteAdapter Useradapter;
     private DBHelper db;
     private Spinner spinnerUser;
     private String BookingRequesterId ="";
+    private boolean IsEdit = false;
+    private  Intent intent;
+    private String GlobalBookingTransactionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,13 +68,7 @@ public class AddBookingActivity extends AppCompatActivity
             setContentView(R.layout.activity_add_booking);
             db = new DBHelper(this);
             booking = new Booking();
-
-            calendar = Calendar.getInstance();
-            year = calendar.get(Calendar.YEAR);
-            month = calendar.get(Calendar.MONTH);
-            day = calendar.get(Calendar.DAY_OF_MONTH);
-            showDate(year,month,day);
-
+            dpDatePicker  =  (DatePicker) findViewById(R.id.datePicker);
             spinnerUser = (Spinner) findViewById(R.id.SpinnerUserName);
 
             AddListener();
@@ -77,12 +79,108 @@ public class AddBookingActivity extends AppCompatActivity
             userAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
             spinnerUser.setAdapter(userAdapter);
 
+            intent = getIntent();
+            String GlobalBookingTransactionId = intent.getStringExtra("ModifyBookingRecord");
+
+            IsEdit = GlobalBookingTransactionId == null ? false : true;
+
+            if(IsEdit)
+            {
+                if(GlobalBookingTransactionId != null && !GlobalBookingTransactionId.isEmpty())
+                {
+                    booking = GetBooking(GlobalBookingTransactionId);
+                    FillControls(booking);
+                }
+            }
+            else
+            {
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                showDate(year,month,day);
+            }
         }
         catch (Exception ex)
         {
             String s = ex.getMessage();
             String g= s;
         }
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        if (intent != null)
+        {
+            if(GlobalBookingTransactionId != null && !GlobalBookingTransactionId.isEmpty())
+            {
+               // booking = GetBooking(GlobalBookingTransactionId);
+                //FillControls(booking);
+            }
+        }
+    }
+
+    private void  FillControls(Booking booking)
+    {
+        editTextPickUpfrom = (EditText)findViewById(R.id.PickUpfrom);
+        editTextPlaceofvisit= (EditText)findViewById(R.id.Placeofvisit);
+        editTextReasonTravel = (EditText)findViewById(R.id.ReasonForTravel);
+        editTextTotalTimeNeeded = (EditText)findViewById(R.id.TotalTimeNeeded);
+        editTextNumberOfPersons = (EditText)findViewById(R.id.NumberOfPersons);
+
+        dpTimePicker  =  (TimePicker) findViewById(R.id.timePicker);
+
+        try
+        {
+            editTextPickUpfrom.setText(booking.getPlaceOfPickup());
+            editTextPlaceofvisit.setText(booking.getPlaceOfVisit());
+            editTextReasonTravel.setText(booking.getReasonForTravel());
+            editTextTotalTimeNeeded.setText(String.valueOf(booking.getRequiredHours()));
+            editTextNumberOfPersons.setText(String.valueOf(booking.getNumberOfPersons()));
+
+            SetSpinnerValue(spinnerUser,booking);
+
+            dpTimePicker.setCurrentHour(booking.getPickUpDateTime().getHours());
+            dpTimePicker.setCurrentMinute(booking.getPickUpDateTime().getMinutes());
+
+            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+
+            String PickupDateString = dateformat.format(booking.getPickUpDateTime());
+
+            Calendar cal =  Calendar.getInstance();
+
+            cal.setTime(booking.getPickUpDateTime());
+
+            int Year = cal.get(Calendar.YEAR);
+            int Month =  cal.get(Calendar.MONTH);
+            int Day  =  cal.get(Calendar.DAY_OF_MONTH);
+
+            showDate(Year,Month,Day);
+
+        }catch(Throwable ex)
+        {
+            String s = ex.getMessage();
+            String g= s;
+        }
+
+    }
+
+    private void SetSpinnerValue(Spinner spinner, Booking value)
+    {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (Objects.equals(spinner.getItemAtPosition(i).toString(),value.getBookingRequesterName().toString()))
+            {
+                spinner.setSelection(i);
+                break;
+            }
+        }
+    }
+    private Booking GetBooking(String GlobalBookingTransactionId)
+    {
+        return db.GetBookingById(GlobalBookingTransactionId);
     }
 
     private List<StringWithTag> CreateUsersList(ArrayList<Users> users)
@@ -117,6 +215,9 @@ public class AddBookingActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 SaveBooking();
+
+                Intent mainIntent = new Intent(AddBookingActivity.this, BookingListActivity.class);
+                startActivity(mainIntent);
             }
         });
 
@@ -135,6 +236,7 @@ public class AddBookingActivity extends AppCompatActivity
 
             }
         });
+
     }
 
     private void SaveBooking()
@@ -146,13 +248,14 @@ public class AddBookingActivity extends AppCompatActivity
         editTextTotalTimeNeeded = (EditText)findViewById(R.id.TotalTimeNeeded);
         editTextNumberOfPersons = (EditText)findViewById(R.id.NumberOfPersons);
         dpDatePicker  =  (DatePicker) findViewById(R.id.datePicker);
+        dpTimePicker  =  (TimePicker) findViewById(R.id.timePicker);
 
 
         try
         {
-            String DateString =  String.format("%s-%s-%s",dpDatePicker.getYear(),dpDatePicker.getMonth() + 1 ,dpDatePicker.getDayOfMonth());
+            String DateString =  String.format("%s-%s-%s %s:%s:%s",dpDatePicker.getYear(),dpDatePicker.getMonth() + 1 ,dpDatePicker.getDayOfMonth(),dpTimePicker.getCurrentHour(),dpTimePicker.getCurrentMinute(),"00");
 
-            String DateFormat = "yyyy-MM-dd";
+            String DateFormat = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat sdf = new SimpleDateFormat(DateFormat);
             Date PickUpDateTime = sdf.parse(DateString);
 
@@ -167,7 +270,7 @@ public class AddBookingActivity extends AppCompatActivity
                     editTextPickUpfrom.getText().toString(),
                     editTextPlaceofvisit.getText().toString(),
                     editTextReasonTravel.getText().toString(),
-                    TotalHoursNeeded,null,false,false,false
+                    TotalHoursNeeded,null,false,false,false,""
                     );
 
             db.AddBooking(booking);
@@ -186,8 +289,6 @@ public class AddBookingActivity extends AppCompatActivity
     public void setDate(View view)
     {
         showDialog(999);
-        /*Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
-                .show();*/
     }
 
     @Override
@@ -205,8 +306,7 @@ public class AddBookingActivity extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
-            TextView tx1 = (TextView)findViewById(R.id.LablePersonName);
-           tx1.setText("");
+
         }
     };
 
@@ -225,20 +325,24 @@ public class AddBookingActivity extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
-           /* Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
-                    .show();*/
+
         }
     };
 
-    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener()
+    {
         @Override
-        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-            // TODO Auto-generated method stub
-            // arg1 = year
-            // arg2 = month
-            // arg3 = day
-
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3)
+        {
             showDate(arg1,arg2,arg3);
+        }
+    };
+
+    private DatePicker.OnDateChangedListener dateSetListener = new DatePicker.OnDateChangedListener()
+    {
+        public void onDateChanged(DatePicker view, int year, int monthOfYear,int dayOfMonth)
+        {
+            showDate(year,monthOfYear,dayOfMonth);
         }
     };
 
@@ -250,7 +354,8 @@ public class AddBookingActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
       //  getMenuInflater().inflate(R.menu.main, menu);
         return true;

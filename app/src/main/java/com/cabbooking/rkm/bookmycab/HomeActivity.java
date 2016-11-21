@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 
-    ImageButton imagebutton;
-    ImageButton imagebuttonAddBooking;
+    Button imagebutton;
+    Button imagebuttonBookingList;
+    Button imagebuttonGetAllBooking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,7 @@ public class HomeActivity extends Activity {
 
     public void addListneronImageButton()
     {
-        imagebutton  = (ImageButton)findViewById(R.id.imageButtonAddUser);
+        imagebutton  = (Button)findViewById(R.id.imageButtonAddUser);
         imagebutton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -34,16 +36,16 @@ public class HomeActivity extends Activity {
             }
         });
 
-        imagebuttonAddBooking  = (ImageButton)findViewById(R.id.imagebuttonAddBooking);
-        imagebuttonAddBooking.setOnClickListener(new View.OnClickListener()
+        imagebuttonBookingList  = (Button)findViewById(R.id.imagebuttonBookingList);
+        imagebuttonBookingList.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 try
                 {
-                    Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(HomeActivity.this,AddBookingActivity.class);
+                    Toast.makeText(HomeActivity.this, "", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,BookingListActivity.class);
                     startActivity(intent);
                 }
                 catch(Exception ex)
@@ -54,6 +56,28 @@ public class HomeActivity extends Activity {
 
             }
         });
+/*
+        imagebuttonGetAllBooking  = (Button)findViewById(R.id.imagebuttonbookingHistroy);
+        imagebuttonGetAllBooking.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try
+                {
+                    Toast.makeText(HomeActivity.this, "", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,BookingListActivity.class);
+                    startActivity(intent);
+                }
+                catch(Exception ex)
+                {
+                    String s = ex.getMessage();
+                    String g= s;
+                }
+
+            }
+        });
+        */
     }
 
 }

@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/global_home_bg_new_2"
     tools:context="com.cabbooking.rkm.LoginActivity">
 
     <!-- Login progress -->
