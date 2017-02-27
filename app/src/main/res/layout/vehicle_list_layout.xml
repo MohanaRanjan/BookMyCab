@@ -5,17 +5,12 @@
     android:id="@+id/headerRLayout"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView
-        android:layout_height="40dp"
-        android:layout_width="40dp"
-        android:paddingRight="15dp"
-        android:scaleType="fitXY"
-        android:id="@+id/imageViewStatus"
-        />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:id="@+id/BookingListUserName"
+        android:id="@+id/VehicleListVehicleModel"
         android:paddingLeft="10dp"
         android:gravity="center_vertical"
         android:textSize="15sp"
@@ -23,31 +18,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:id="@+id/BookingListTravelDate"
+        android:id="@+id/VehicleListVehicleNumber"
         android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/BookingListUserName"
+        android:layout_toRightOf="@+id/VehicleListVehicleModel"
         android:textSize="15sp"
         android:paddingLeft="8dp"
         android:typeface="sans" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/BookingListBookingTransactionId"
+        android:id="@+id/VehicleListVehicleId"
         android:gravity="center_vertical"
         android:textSize="2sp"
         android:visibility="invisible"
         android:typeface="sans"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/BookingListTravelDate" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/BookingListBookingId"
-        android:gravity="center_vertical"
-        android:textSize="2sp"
-        android:visibility="invisible"
-        android:typeface="sans"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/BookingListTravelDate" />
+        />
 </RelativeLayout>
 

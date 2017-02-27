@@ -42,7 +42,7 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="foo@example.com"/>
+                    android:text="9874563210"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -59,7 +59,7 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:text="hello"
+                    android:text="password"
                     android:maxLines="1"
                     android:singleLine="true" />
 

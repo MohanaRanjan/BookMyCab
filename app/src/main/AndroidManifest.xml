@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +15,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".SMSReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
@@ -26,6 +36,8 @@
         <activity android:name=".CompleteListActivity" />
         <activity android:name=".AddUserActivity" />
         <activity android:name=".AddBookingActivity" />
+        <activity android:name=".BookingSettingsActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity
             android:name=".BookingListActivity"
             android:label="@string/title_activity_booking_list"
@@ -33,6 +45,30 @@
         <activity
             android:name=".Home2"
             android:label="@string/title_activity_home2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddVehicleActivity"
+            android:label="@string/title_activity_add_vehicle"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".VehicleListActivity" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".UserSettingsActivity"
+            android:label="@string/title_activity_user_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BookingRequestActivity"
+            android:label="@string/title_activity_booking_request"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

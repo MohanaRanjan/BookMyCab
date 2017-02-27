@@ -6,4 +6,7 @@
     <color name="bglinear">#e8edf3</color>
     <color name="colorAzureWhite">#DBE9F4</color>
     <color name="colorBeige">#F5F5DC</color>
+    <color name="colorPink100">#F8BBD0</color>
+    <color name="colorIndigo100">#C5CAE9</color>
+    <color name="colorBlue100">#E3F2FD</color>
 </resources>

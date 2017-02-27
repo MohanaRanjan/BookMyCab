@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:id="@+id/SVFilter"
+    android:fillViewport="true"
+    android:layout_height="wrap_content">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/LLVehicleTopPane"
+            android:orientation="vertical"
+            >
+            <!-- Top Button -->
+            <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/LLVehicleButtonPane"
+            android:orientation="horizontal"
+            >
+                <Button
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginLeft="50dp"
+                    android:id="@+id/ButtonHomeV"
+                    android:background="@drawable/ic_home_icon"/>
+
+                <Button
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginLeft="50dp"
+                    android:id="@+id/ButtonAddVehicle"
+                    android:background="@drawable/ic_add_vehicle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="355dp"
+                android:id="@+id/LLVehicleFilterOuterPane1"
+                android:orientation="vertical"
+                >
+                    <!-- Year Filter Outer -->
+                    <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/LLVehicleDateFilterInnerPane1"
+                    android:orientation="vertical"
+                    >
+                        <!-- Year Filter From Date-->
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:id="@+id/LLVehicleDateRangePane1"
+                                android:orientation="horizontal"
+                                >
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="date"
+                                    android:hint="YYYY-MM-DD"
+                                    android:ems="10"
+                                    android:id="@+id/DateRangeStart" />
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="time"
+                                    android:hint="HH:MM"
+                                    android:ems="10"
+                                    android:id="@+id/TimeRangeStart"
+                                    />
+                            </LinearLayout>
+
+                        <!-- Year Filter To Date-->
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:id="@+id/LLVehicleDateRangePane2"
+                                android:orientation="horizontal"
+                                >
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="date"
+                                    android:hint="YYYY-MM-DD"
+                                    android:ems="10"
+                                    android:id="@+id/DateRangeEnd" />
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="time"
+                                    android:hint="HH:MM"
+                                    android:ems="10"
+                                    android:id="@+id/TimeRangeEnd"
+                                    />
+                            </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Avilability Filter -->
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/LLVehicleFilterPane"
+                        android:orientation="vertical"
+                        >
+
+                        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/radioGroupVehicleFilters"
+                            android:layout_marginTop="32dp">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Available Vehicles"
+                                android:id="@+id/radioButtonAvailableVehicle"
+                                android:checked="false"
+                                android:paddingBottom="5dp"
+                                />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Booked Vehicles"
+                                android:id="@+id/radioButtonBookedVehicles"
+                                android:checked="false"
+                                android:paddingBottom="5dp"
+                                />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="All Vehicles"
+                                android:id="@+id/radioButtonAllVehicles"
+                                android:checked="false"
+                                android:paddingBottom="5dp"
+                                />
+                        </RadioGroup>
+
+                        </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Search Button -->
+            <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/LLVehicleFilterButtonPane"
+                        android:layout_below="@+id/LLVehicleFilterPane"
+                        android:orientation="vertical">
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginLeft="50dp"
+                        android:id="@+id/ButtonFilterVehicle"
+                        android:background="@drawable/ic_brown_bg"/>
+                        >
+                    </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- List Panel-->
+    <LinearLayout
+        android:layout_height="450dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/LLVehicleListPane"
+        android:orientation="vertical"
+        android:layout_below="@+id/LLVehicleTopPane"
+        >
+
+        <ExpandableListView
+            android:smoothScrollbar="true"
+            android:scrollbars="vertical"
+            android:id="@+id/lvExp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</ScrollView>

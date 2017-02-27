@@ -23,12 +23,23 @@
         android:layout_marginStart="31dp"
         android:layout_marginTop="11dp" />
 
+
+    <Button
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/ButtonHomeUA"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_home_icon"/>
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="Name"
         android:ems="10"
+        android:text=""
         android:id="@+id/Name"
         android:textColorHint="@color/textHighlight"
         android:layout_alignParentTop="true"
@@ -45,6 +56,7 @@
         android:inputType="textEmailAddress"
         android:textColorHint="@color/textHighlight"
         android:ems="10"
+        android:text=""
         android:id="@+id/Email"
         android:layout_alignParentStart="true"
         android:hint="Email"
@@ -58,6 +70,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
+        android:text=""
         android:id="@+id/phone"
         android:layout_alignParentStart="true"
         android:hint="Phone"
@@ -67,13 +80,26 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:text=""
+        android:id="@+id/userpassword"
+        android:layout_alignParentStart="true"
+        android:hint="Password"
+        android:textColorHint="@color/textHighlight"
+        android:layout_below="@+id/phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/phone"
+        android:layout_below="@+id/userpassword"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/radioGroupRoles"

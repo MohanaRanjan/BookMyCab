@@ -5,6 +5,8 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.database.SQLException;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CompleteListActivity extends Activity implements View.OnClickListener
@@ -36,6 +39,7 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
 
         try
         {
@@ -43,11 +47,31 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
             initViews();
 
             db = new DBHelper(this);
+            db.createDataBase();
+            db.openDataBase();
 
             mItems =  db.GetAllUsers();
             mListAdapter = new CompleteListAdapter(this, mItems);
             mCompleteListView.setAdapter(mListAdapter);
-        }catch(Exception ex)
+
+            ListView list = (ListView) findViewById(android.R.id.list);
+
+            setListViewHeightBasedOnChildren(list);
+
+        }
+        catch (IOException ioe)
+        {
+
+            throw new Error("Unable to create database");
+
+        }
+        catch(SQLException sqle)
+        {
+
+            throw sqle;
+
+        }
+        catch(Exception ex)
         {
             String s  =  ex.getMessage();
             String d = s;
@@ -60,6 +84,29 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
         mListAdapter = new CompleteListAdapter(this, mItems);
 
         mCompleteListView.setAdapter(mListAdapter);
+
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ActionBar.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        //http://stackoverflow.com/questions/18367522/android-list-view-inside-a-scroll-view
     }
 
     private void initViews()
@@ -68,7 +115,20 @@ public class CompleteListActivity extends Activity implements View.OnClickListen
        // mAddItemToList = (Button) findViewById(R.id.showOnlyAdmin);
         mAddUser = (Button) findViewById(R.id.ButtonAddUser);
 
+         Button mHome = (Button) findViewById(R.id.ButtonHomeUL);
        // mAddItemToList.setOnClickListener(this);
+
+
+        mHome.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent mainIntent = new Intent(CompleteListActivity.this, HomeActivity.class);
+                startActivity(mainIntent);
+            }
+        });
+
 
         mAddUser.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,12 +2,13 @@ package com.cabbooking.rkm.bookmycab;
 
 import android.database.Cursor;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 
 /**
  * Created by Ramakrishna math Chennai on 09-09-2016.
  */
-public class Users
+public class Users implements Serializable
 {
     String _GlobalUserId;
     Integer _Id;

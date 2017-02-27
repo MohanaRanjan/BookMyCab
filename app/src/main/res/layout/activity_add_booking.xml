@@ -32,6 +32,15 @@
             android:layout_marginTop="11dp"
             android:textSize="30dp" />
 
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/ButtonHomeBA"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_home_icon"/>
+
             <Spinner
                 android:id="@+id/SpinnerUserName"
                 android:layout_width="match_parent"
@@ -95,6 +104,7 @@
 
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,12 +122,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/datePicker"
                 android:calendarViewShown="false"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
                 />
-
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,11 +152,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/LLSearchVehicle"
+            android:background="@color/colorBeige"
+            android:layout_below="@+id/LLtimepicker">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_pickup"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/VehicleAssigned"
+                android:textColorHint="@color/textHighlight"
+                android:text=""
+            />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ButtonSearchCab"
+            android:text="Search Cab"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/LLSearchVehicle"
+            android:background="@color/colorBlue100"
+            android:layout_margin="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/LLButton"
             android:orientation="horizontal"
-            android:layout_below="@+id/LLtimepicker"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/ButtonSearchCab"
+
             >
+
            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,18 +200,6 @@
                 android:background="@drawable/red_bg_1"
                android:layout_margin="10dp"
                />
-
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onBookNowButtonClick"
-                android:id="@+id/ButtonBookAnother"
-                android:text="Update"
-                android:background="@drawable/blue_bg_1"
-                android:layout_margin="10dp"
-                />
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -178,6 +207,33 @@
                 android:id="@+id/ButtonBookNow"
                 android:text="Create New"
                 android:background="@drawable/green_bg_1"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LLTransformButton"
+            android:orientation="horizontal"
+            android:layout_below="@+id/LLButton"
+            android:layout_alignParentBottom="true"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onBookNowButtonClick"
+                android:id="@+id/ButtonTransformToHOI"
+                android:text="Transform Approval"
+                android:background="@drawable/grey_bg_1"
+                android:layout_margin="10dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onBookNowButtonClick"
+                android:id="@+id/ButtonApproveByHOI"
+                android:text="Approve Request"
+                android:background="@drawable/grey_bg_1"
                 android:layout_margin="10dp"
                 />
         </LinearLayout>

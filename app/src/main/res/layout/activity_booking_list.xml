@@ -1,13 +1,11 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/global_home_bg_new_2"
     tools:context=".BookingListActivity" >
+
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -15,6 +13,13 @@
         android:orientation="horizontal"
         android:layout_alignParentRight="true"
         >
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/ButtonHomeB"
+            android:background="@drawable/ic_home_icon"/>
 
         <Button
             android:layout_width="45dp"
@@ -25,10 +30,50 @@
             android:background="@drawable/ic_adduser"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:id="@+id/LLBookingStatusFilterPane"
+        android:orientation="vertical">
+
+       <!-- <Button
+            android:id="@+id/imagebuttonStatusSentHOIApproval"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Sent for HOI Approval"
+            />
+
+        <Button
+            android:id="@+id/imagebuttonStatusHOIApproved"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="HOI Approved"/>
+
+        <Button
+            android:id="@+id/imagebuttonStatusSentHOIRejected"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="HOI Rejected"/>-->
+
+        <Spinner
+            android:id="@+id/SpinnerBookingStatus"
+            android:layout_width="match_parent"
+            android:hint="Booking Status"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/SpinnerFilterByDate"
+            android:layout_width="match_parent"
+            android:hint="Filter by Date"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+   <!-- <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:id="@+id/LLBookingFilterPane"
+        android:layout_below="@+id/LLBookingStatusFilterPane"
         android:orientation="vertical"
         >
 
@@ -76,18 +121,19 @@
         </RadioGroup>
 
     </LinearLayout>
-
+-->
     <LinearLayout
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:id="@+id/LLBookingListPane"
         android:orientation="vertical"
         android:layout_below="@+id/LLBookingFilterPane"
         android:layout_alignParentEnd="true">
+
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="390dp"
+            android:layout_height="wrap_content"
             android:scrollbars="vertical"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -97,4 +143,3 @@
     </LinearLayout>
 
 </RelativeLayout>
-</ScrollView>

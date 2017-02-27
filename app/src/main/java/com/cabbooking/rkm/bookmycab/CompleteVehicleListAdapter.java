@@ -3,7 +3,6 @@ package com.cabbooking.rkm.bookmycab;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Ramakrishna Mission on 11-11-2016.
+ * Created by Ramakrishna Mission on 28-11-2016.
  */
-public class CompleteBookingListAdapter  extends BaseAdapter
+public class CompleteVehicleListAdapter extends BaseAdapter
 {
     private Activity mContext;
-    private List<Booking> mList;
+    private List<Vehicle> mList;
     private LayoutInflater mLayoutInflater = null;
     private DBHelper db;
 
-    public CompleteBookingListAdapter(Activity context, List<Booking> list)
+
+
+    public CompleteVehicleListAdapter(Activity context, List<Vehicle> list)
     {
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(new BookingListActivity()));
         mContext = context;
@@ -51,25 +53,24 @@ public class CompleteBookingListAdapter  extends BaseAdapter
         return position;
     }
 
-
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(int position, View convertView, ViewGroup viewGroup)
     {
         View v = convertView;
-        CompleteBookingListViewHolder viewHolder;
+        CompleteVehicleListViewHolder viewHolder;
 
 
         if (convertView == null)
         {
             LayoutInflater li = (LayoutInflater) mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = li.inflate(R.layout.booking_list_layout, null);
-            viewHolder = new CompleteBookingListViewHolder(v);
+            v = li.inflate(R.layout.vehicle_list_layout, null);
+            viewHolder = new CompleteVehicleListViewHolder(v);
             v.setTag(viewHolder);
         }
         else
         {
-            viewHolder = (CompleteBookingListViewHolder) v.getTag();
+            viewHolder = (CompleteVehicleListViewHolder) v.getTag();
         }
         //viewHolder.mUserBookingItem.setText(db.GetUser( mList.get(position).getBookingRequesterId()).getName());
 
@@ -77,14 +78,10 @@ public class CompleteBookingListAdapter  extends BaseAdapter
         {
             v.setBackgroundColor(Color.parseColor("#DBE9F4"));
 
-            viewHolder.mImageItem.setImageResource(R.drawable.ic_input_black_18dp);
-
         }
         else
         {
             v.setBackgroundColor(Color.parseColor("#F5F5DC"));
-            //v.setBackground(v.getResources().getDrawable(R.drawable.ic_grey_rec));
-            viewHolder.mImageItem.setImageResource(R.drawable.ic_grey_rec);
         }
 
 
@@ -92,6 +89,7 @@ public class CompleteBookingListAdapter  extends BaseAdapter
         SimpleDateFormat sdf = new SimpleDateFormat(DateFormat);
         try
         {
+            /*
             switch( mList.get(position).getIsTravelComplete() == true ? "TravelComplete" : "TraveNotStarted")
             {
                 case "TravelComplete":
@@ -107,6 +105,7 @@ public class CompleteBookingListAdapter  extends BaseAdapter
                     viewHolder.mTravelDate.setText(sdf.format( mList.get(position).getPickUpDateTime()));
                     break;
             }
+            */
         }
         catch (Throwable ex)
         {
@@ -115,26 +114,20 @@ public class CompleteBookingListAdapter  extends BaseAdapter
         }
         return v;
     }
-
-
 }
 
-class CompleteBookingListViewHolder
+
+class CompleteVehicleListViewHolder
 {
-    public TextView mUserBookingItem;
-    public TextView mBookingTransactionId;
-    public TextView mBookingId;
-    public ImageView mImageItem;
-    public TextView mTravelDate;
+    public TextView mVehicleNumber;
+    public TextView mVehicleModel;
+    public TextView mVehicleId;
 
-
-    public CompleteBookingListViewHolder(View base)
+    public CompleteVehicleListViewHolder(View base)
     {
-        mUserBookingItem = (TextView) base.findViewById(R.id.BookingListUserName);
-        mBookingId  =  (TextView) base.findViewById(R.id.BookingListBookingId);
-        mBookingTransactionId = (TextView) base.findViewById(R.id.BookingListBookingTransactionId);
-        mTravelDate = (TextView) base.findViewById(R.id.BookingListTravelDate);
-        mImageItem = (ImageView) base.findViewById(R.id.imageViewStatus);
+        mVehicleNumber = (TextView) base.findViewById(R.id.BookingListUserName);
+        mVehicleId  =  (TextView) base.findViewById(R.id.BookingListBookingId);
+        mVehicleModel = (TextView) base.findViewById(R.id.BookingListBookingTransactionId);
     }
 }
 

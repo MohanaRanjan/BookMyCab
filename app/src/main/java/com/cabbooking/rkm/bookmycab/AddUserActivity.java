@@ -3,6 +3,7 @@ package com.cabbooking.rkm.bookmycab;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.SQLException;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class AddUserActivity extends Activity
     private EditText editTextName;
     private EditText editTextPhone;
     private EditText editTextEmail;
+    private EditText editTextPassword;
     private RadioButton rdoButton;
     private RadioButton rdoButtonHOI;
     private RadioButton rdoButtonAdmin;
@@ -45,7 +48,21 @@ public class AddUserActivity extends Activity
             setContentView(R.layout.activity_add_user);
 
             db = new DBHelper(this);
+            db.createDataBase();
+            db.openDataBase();
             addListeronButton();
+        }
+        catch (IOException ioe)
+        {
+
+            throw new Error("Unable to create database");
+
+        }
+        catch(SQLException sqle)
+        {
+
+            throw sqle;
+
         }
         catch (Exception ex)
         {
@@ -63,7 +80,6 @@ public class AddUserActivity extends Activity
 
         IsEdit = userId == null ? false : true;
 
-        //Bundle s = intent.getBundleExtra("ModifyRecord");
         if(userId != null && !userId.isEmpty())
         {
             user = fillUser(userId);
@@ -81,6 +97,7 @@ public class AddUserActivity extends Activity
         editTextName = (EditText) findViewById(R.id.Name);
         editTextEmail = (EditText) findViewById(R.id.Email);
         editTextPhone = (EditText) findViewById(R.id.phone);
+        editTextPassword = (EditText) findViewById(R.id.userpassword);
 
         try
         {
@@ -110,19 +127,29 @@ public class AddUserActivity extends Activity
             editTextName.setText(user.getName());
             editTextEmail.setText(user.getEmail());
             editTextPhone.setText(user.getMobileNumber());
+            editTextPassword.setText(user.getPassword());
 
 
         }catch(Exception ex)
         {
             String S  = ex.getMessage();
         }
-
-
     }
 
     public void addListeronButton()
     {
         btnSave = (Button) findViewById(R.id.buttonSave);
+        Button mHome =  (Button) findViewById(R.id.ButtonHomeUA);
+
+        mHome.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent mainIntent = new Intent(AddUserActivity.this, HomeActivity.class);
+                startActivity(mainIntent);
+            }
+        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,8 +159,40 @@ public class AddUserActivity extends Activity
                 editTextName = (EditText) findViewById(R.id.Name);
                 editTextEmail = (EditText) findViewById(R.id.Email);
                 editTextPhone = (EditText) findViewById(R.id.phone);
-
+                editTextPassword = (EditText) findViewById(R.id.userpassword);
                 radioGroupRoles =  (RadioGroup) findViewById(R.id.radioGroupRoles);
+
+                if(editTextName.getText().toString().equals(""))
+                {
+                    editTextName.setError("Name is required");
+                    return;
+                }
+                else if(editTextEmail.getText().toString().equals(""))
+                {
+                    editTextEmail.setError("Email is required");
+                    return;
+                }
+                else if(editTextPhone.getText().toString().equals(""))
+                {
+                    editTextPhone.setError("Phone is required");
+                    return;
+                }
+                else if(editTextPassword.getText().toString().equals(""))
+                {
+                    editTextPassword.setError("Password is required");
+                    return;
+                }
+                else if(!db.IsUniquePhone(editTextPhone.getText().toString()))
+                {
+                    editTextPhone.setError("Phone number already registered");
+                    return;
+                }
+                else if (radioGroupRoles.getCheckedRadioButtonId() == -1)
+                {
+                    RadioButton rdn = (RadioButton)findViewById(R.id.radioButtonAdmin);
+                    Toast.makeText(getApplicationContext(), "Select any one option", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 int selectedId =  radioGroupRoles.getCheckedRadioButtonId();
 
@@ -174,7 +233,7 @@ public class AddUserActivity extends Activity
                     user = new Users("",
                             editTextName.getText().toString(),
                             editTextEmail.getText().toString(),
-                            "password",
+                            editTextPassword.getText().toString(),
                             editTextPhone.getText().toString(),
                             RoleId,
                             Boolean.TRUE);
@@ -188,10 +247,31 @@ public class AddUserActivity extends Activity
                 new AlertDialog.Builder(AddUserActivity.this)
                         .setTitle("SuccessFul save")
                         .setMessage("Record is saved Successfully")
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent=new Intent(AddUserActivity.this, CompleteListActivity.class);
-                                startActivity(intent);
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                if(editTextName.getText().toString().equals(""))
+                                {
+                                    editTextName.setError("Name is required");
+                                }
+                                else if(editTextEmail.getText().toString().equals(""))
+                                {
+                                    editTextEmail.setError("Email is required");
+                                }
+                                else if(editTextPhone.getText().toString().equals(""))
+                                {
+                                    editTextPhone.setError("Phone is required");
+                                }
+                                else if(editTextPassword.getText().toString().equals(""))
+                                {
+                                    editTextPassword.setError("Password is required");
+                                }
+                                else
+                                {
+                                    Intent intent = new Intent(AddUserActivity.this, CompleteListActivity.class);
+                                    startActivity(intent);
+                                }
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
